@@ -60,6 +60,9 @@ def build_map(two_d_list):
             two_d_list[m][n] = str(two_d_list[m][n])
     return two_d_list
 
+def write_tiles(my_map, file):
+    for k in range(len(my_map)):
+        file.write("".join(my_map[k]) + "\n")
 
 def main():
     """Main function logic to read file input using while loop and output to specific location"""
@@ -76,19 +79,22 @@ def main():
     counter = 1
     new_field = False
     #while loop to parse lines from input file
-    while lines_to_read != 0 and lines_to_read != "":
+    while lines_to_read != 0 and lines_to_read != "0":
         for i in range(int(lines_to_read)):
             data = input_file.readline().strip("\n")
             square_list.append(data)
         two_d_list = build_2d_array(square_list)
         my_map = build_map(two_d_list)
-        output_file.write(is_new_field(new_field) + "Field #" + str(counter) + ":\n")
-        new_field = True
-        counter += 1
-        for k in range(len(my_map)):
-            output_file.write("".join(my_map[k]) + "\n")
+
+        # for k in range(len(my_map)):
+        #     output_file.write("".join(my_map[k]) + "\n")
         row_column_array = (input_file.readline().strip("\n").split(" "))
         lines_to_read = row_column_array[0]
+        if lines_to_read != 0 or lines_to_read != "0":
+            output_file.write(is_new_field(new_field) + "Field #" + str(counter) + ":\n")
+            write_tiles(my_map, output_file)
+        new_field = True
+        counter += 1
         square_list = []
 
 main()
