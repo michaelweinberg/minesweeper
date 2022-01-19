@@ -61,6 +61,7 @@ def build_map(two_d_list):
     return two_d_list
 
 def write_tiles(my_map, file):
+    """void method to write tiles in map to output file"""
     for k in range(len(my_map)):
         file.write("".join(my_map[k]) + "\n")
 
@@ -78,6 +79,7 @@ def main():
     square_list = []
     counter = 1
     new_field = False
+
     #while loop to parse lines from input file
     while lines_to_read != 0 and lines_to_read != "0":
         for i in range(int(lines_to_read)):
@@ -85,9 +87,6 @@ def main():
             square_list.append(data)
         two_d_list = build_2d_array(square_list)
         my_map = build_map(two_d_list)
-
-        # for k in range(len(my_map)):
-        #     output_file.write("".join(my_map[k]) + "\n")
         row_column_array = (input_file.readline().strip("\n").split(" "))
         lines_to_read = row_column_array[0]
         if lines_to_read != 0 or lines_to_read != "0":
