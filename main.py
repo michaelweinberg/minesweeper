@@ -31,7 +31,7 @@ def build_map(two_d_list):
         for k in range(len(two_d_list[i])):
             if two_d_list[i][k] == "*":
                 #increment to the left if free and exists
-                if k < len(two_d_list[i]) - 1 and k >= 1 and two_d_list[i][k-1] is not None and two_d_list[i][k-1] != "*":
+                if k < len(two_d_list[i]) and k >= 1 and two_d_list[i][k-1] is not None and two_d_list[i][k-1] != "*":
                     two_d_list[i][k - 1] += 1
                 #increment to the right if free
                 if k < len(two_d_list[i]) - 1 and two_d_list[i][k + 1] is not None and two_d_list[i][k + 1] != "*":
@@ -40,13 +40,13 @@ def build_map(two_d_list):
                 if i < len(two_d_list) - 1 and two_d_list[i + 1][k] is not None and two_d_list[i + 1][k] != "*":
                     two_d_list[i + 1][k] += 1
                 #incrmeent above if free
-                if i < len(two_d_list) - 1 and i >= 1 and two_d_list[i - 1][k] is not None and two_d_list[i - 1][k] != "*":
+                if i <= len(two_d_list) - 1 and i >= 1 and two_d_list[i - 1][k] is not None and two_d_list[i - 1][k] != "*":
                     two_d_list[i - 1][k] += 1
                 #increment up and left if free
-                if i < len(two_d_list) - 1 and i >= 1 and k >= 1 and two_d_list[i - 1][k - 1] is not None and two_d_list[i-1][k-1] != "*":
+                if i <= len(two_d_list) - 1 and i >= 1 and k >= 1 and two_d_list[i - 1][k - 1] is not None and two_d_list[i-1][k-1] != "*":
                     two_d_list[i - 1][k - 1] += 1
                 #increment up and right if free
-                if i < len(two_d_list) - 1 and k < len(two_d_list[i]) - 1 and i >= 1 and two_d_list[i - 1][k + 1] is not None and two_d_list[i - 1][k + 1] != "*":
+                if i <= len(two_d_list) - 1 and k < len(two_d_list[i]) - 1 and i >= 1 and two_d_list[i - 1][k + 1] is not None and two_d_list[i - 1][k + 1] != "*":
                     two_d_list[i - 1][k + 1] += 1
                 #increment down and left if free
                 if i < len(two_d_list) - 1 and k >= 1 and i <= len(two_d_list) - 1 and two_d_list[i + 1][k -1] is not None and two_d_list[i + 1][k -1] != "*":
@@ -90,3 +90,5 @@ def main():
         row_column_array = (input_file.readline().strip("\n").split(" "))
         lines_to_read = row_column_array[0]
         square_list = []
+
+main()
