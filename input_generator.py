@@ -34,4 +34,4 @@ for f in range(0, number_of_fields):
                 if counter % int(column) == 0:
                     output_file.write("\n")
         print(int(counter))
-
+output_file.write("0 0" + "\n")
