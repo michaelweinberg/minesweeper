@@ -1,24 +1,41 @@
-"""
-This is a program that read two numbers from a file that specifies the lines and columns of a following two dimensional list,
-and then write it to another file to show a number in a square which tells you how many mines there are adjacent to that square.
-"""
+"""This is a modular that read two numbers from an input file which specifies the lines and columns of a following
+two dimensional list, and then write it to an output file to show a number in a square which tells you how many mines
+there are adjacent to that square. """
 
 
 class Minesweeper:
+    """A class used to build a minesweeper"""
     def __init__(self, input_location, output_location):
+        """
+        Parameters
+        input_location: input file
+        output_location: output file
+        """
         self.input_location = input_location
         self.output_location = output_location
         self.input_file=open(self.input_location, "r")
         self.output_file=open(self.output_location, "w")
 
-
     def close_input_file(self):
+        """
+        close the input file
+        """
         self.input_file.close()
 
     def close_output_file(self):
+        """
+        close the output file
+        """
         self.output_file.close()
 
     def build_hints_map(self, int1, int2, input_file):
+        """
+        return the two dimensional list with numbers of how many mines are around each block according to the input file
+        :param int1: row of the list
+        :param int2: column of the list
+        :param input_file: input file
+        :return: arraylist
+        """
         arraylist = [[0 for m in range(int2)] for n in range(int1)]
         for n in range(int1):
             single_line = input_file.readline().strip("\n")
@@ -44,6 +61,10 @@ class Minesweeper:
         return arraylist
 
     def compute_result(self):
+        """
+        read lines in input file and write the output file with results from the self.build_hints_map()
+        there would be multiple results from one input file and they are writen to the same output file
+        """
         int1, int2 = self.input_file.readline().split()
         count = 1
         while int(int1) != 0:
